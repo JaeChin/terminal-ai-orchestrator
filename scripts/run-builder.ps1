@@ -12,28 +12,33 @@ if (-not $Env:ANTHROPIC_API_KEY) {
   exit 1
 }
 
-$system = Get-Content agents/assistant/system.md -Raw
-$user = ($Prompt -join " ")
+$userPrompt = $Prompt -join " "
+$systemPrompt = Get-Content agents/builder/system.md -Raw
 
 $body = @{
   model = "claude-sonnet-4-5-20250929"
-  max_tokens = 600
+  max_tokens = 1200
   messages = @(
     @{
       role = "user"
-      content = "SYSTEM:\n$system\n\nUSER:\n$user"
+      content = "SYSTEM:\n$systemPrompt\n\nUSER:\n$userPrompt"
     }
   )
 } | ConvertTo-Json -Depth 6 -Compress
 
 $response = Invoke-RestMethod `
-  -Uri "https://api.anthropic.com/v1/messages" `
   -Method POST `
+  -Uri "https://api.anthropic.com/v1/messages" `
   -Headers @{
     "x-api-key" = $Env:ANTHROPIC_API_KEY
     "anthropic-version" = "2023-06-01"
     "content-type" = "application/json"
   } `
   -Body $body
+
+if (-not $response.content) {
+  Write-Error "Builder agent returned no content."
+  return
+}
 
 $response.content[0].text
