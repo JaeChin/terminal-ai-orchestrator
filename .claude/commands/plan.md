@@ -1,32 +1,23 @@
-# Create Implementation Plan
+# Plan
 
-Create a detailed plan for the feature or task described.
+Activate the Plan Agent for requirements gathering and research.
 
-## Sections Required
+## Usage
+Describe your project idea or feature. The agent will:
 
-### Overview
-- Feature name
-- What it does
-- Why it matters
-- Which agent(s) are involved
+1. Ask 5-7 targeted questions about requirements
+2. Research relevant technologies and patterns
+3. Identify risks and constraints
+4. Produce a blueprint for the Architecture Agent
 
-### Technical Approach
-- Files to create or modify
-- Agent prompts affected
-- Context/memory updates needed
-- Scripts to create or update
-
-### Implementation Steps
-Numbered, sequential steps. Include:
-- Agent prompt changes
-- Routing logic updates
-- Script modifications
-- Testing approach
-
-### Verification
-- How to test the changes work
-- Expected behavior
-- Rollback plan if issues arise
+## When to Use
+- Starting a new project
+- Scoping a new feature
+- Unsure what approach to take
+- Need to research before building
 
 ## Output
-Save to `docs/plans/[feature-name].md`
+A structured blueprint saved to `docs/plans/[project-name]-blueprint.md`
+
+## Next Step
+After blueprint is complete: `/architect [paste blueprint]`
