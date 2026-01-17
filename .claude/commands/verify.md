@@ -25,6 +25,7 @@ Review all changes made in this session.
 - Context files in sync?
 
 ## Output
+
 Report issues by severity:
 - **Critical**: Must fix now
 - **Warning**: Should fix soon
